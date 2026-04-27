@@ -8,9 +8,7 @@
     
     <!-- Open Graph разметка для соцсетей и мессенджеров -->
     <meta property="og:title" content="Moscow Cleaning Pro — Премиальная химчистка мебели">
-    <meta property="og:description" Так ничего не меняй, и недобавляй
-
-content="Вернем чистоту и уют за 120 минут. 12 профи-мастеров. Работаем по ГОСТу.">
+    <meta property="og:description" content="Вернем чистоту и уют за 120 минут. 12 профи-мастеров. Работаем по ГОСТу.">
     <meta property="og:image" content="https://example.com/preview.jpg">
     <meta property="og:url" content="https://moscowcleaningpro.ru">
     <meta property="og:type" content="website">
@@ -92,7 +90,8 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
         :root {
             --bg-dark: #020617;
             --accent-blue: #2563eb;
-            --accent-cyan: #22d3ee;
+            --accent-cyan: #0ea5e9;
+            --accent-deep: #1e40af;
         }
 
         body {
@@ -122,7 +121,7 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
             position: fixed;
             width: 1px;
             height: 100vh;
-            background: linear-gradient(to bottom, transparent, rgba(34, 211, 238, 0.15), transparent);
+            background: linear-gradient(to bottom, transparent, rgba(34, 211, 238, 0.05), transparent);
             z-index: -1;
             pointer-events: none;
         }
@@ -135,7 +134,8 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
             height: 20%;
             background: linear-gradient(to bottom, transparent, var(--accent-cyan), transparent);
             filter: blur(2px);
-            animation: scan-line 8s infinite ease-in-out;
+            animation: scan-line 10s infinite ease-in-out;
+            opacity: 0.3;
         }
         .v-line-1 { left: 15%; animation-delay: 0s; }
         .v-line-2 { left: 50%; animation-delay: 2s; }
@@ -143,8 +143,8 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
 
         @keyframes scan-line {
             0% { top: -20%; opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
             100% { top: 120%; opacity: 0; }
         }
 
@@ -155,51 +155,48 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
             100% { transform: translate(0, 0) scale(1); }
         }
 
+        /* Текст с градиентом */
         .gradient-flow {
-            background: linear-gradient(to right, #2563eb, #22d3ee, #60a5fa, #2563eb);
-            background-size: 300% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: gradient-anim 8s linear infinite;
-            display: inline-block;
-            padding-right: 0.15em;
-            padding-bottom: 0.2em;
-            margin-bottom: -0.2em;
-        }
-
-        .text-gradient-flow {
-            background: linear-gradient(to right, #94a3b8, #f8fafc, #94a3b8);
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-cyan), var(--accent-blue));
             background-size: 200% auto;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: gradient-anim 12s linear infinite;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-anim 5s linear infinite;
+            display: inline-block;
+            text-shadow: 0 0 1px rgba(0,0,0,0.1); 
         }
 
-        @keyframes gradient-anim { to { background-position: 300% center; } }
+        @keyframes gradient-anim { 
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
 
+        /* Появление при скролле */
         .reveal {
             opacity: 0;
-            transform: translateY(30px) scale(0.98);
-            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateY(20px);
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), 
+                        transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity;
         }
 
         .reveal.active {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
         }
 
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
         }
 
         .glass-card:hover {
             border-color: var(--accent-cyan);
-            box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.15);
             transform: translateY(-5px);
         }
 
@@ -207,7 +204,7 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
             font-size: 20vw;
             font-weight: 900;
             line-height: 1;
-            color: rgba(255, 255, 255, 0.02);
+            color: rgba(255, 255, 255, 0.015);
             pointer-events: none;
             white-space: nowrap;
             z-index: -1;
@@ -218,7 +215,7 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
         }
 
         @keyframes pulse-ring {
-            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.6); }
             70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
             100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
         }
@@ -243,7 +240,7 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
         .calc-option { cursor: pointer; transition: all 0.3s ease; }
         .calc-option.selected { background: rgba(37, 99, 235, 0.2); border-color: var(--accent-cyan); transform: scale(1.02); }
 
-        /* Stack Slider Styles */
+        /* Stack Slider Styles Оптимизация */
         .master-stack-container {
             position: relative;
             height: 480px;
@@ -257,13 +254,17 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
             width: 100%;
             height: 100%;
             border-radius: 2.5rem;
-            transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+            /* Исправление наложения: делаем фон непрозрачным, чтобы текст не просвечивал */
+            background: #0f172a; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        opacity 0.6s ease;
             cursor: pointer;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            will-change: transform, opacity, filter;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            will-change: transform, opacity;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
@@ -320,7 +321,7 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div class="md:col-span-2 glass-card rounded-3xl p-10 reveal">
                 <h3 class="text-4xl font-bold mb-4 text-blue-400">7+ лет опыта</h3>
-                <p class="text-slate-400">На рынке Москвы и области. Мы не агрегатор — каждый мастер в штате несет личную ответственность за результат.</p>
+                <p class="text-slate-400 text-sm">На рынке Москвы и области. Мы не агрегатор — каждый мастер в штате несет личную ответственность за результат.</p>
             </div>
             <div class="glass-card rounded-3xl p-10 flex flex-col justify-between reveal text-white">
                 <div class="text-blue-400 mb-4">
@@ -333,8 +334,8 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
                 <div class="text-cyan-400 mb-4">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
-                <div class="text-3xl font-bold uppercase tracking-tighter mb-2">Гарантия</div>
-                <p class="text-sm text-slate-400">Вернем деньги или переделаем работу, если результат вас не устроит.</p>
+                <div class="text-3xl font-bold uppercase tracking-tighter mb-2 text-white">Гарантия</div>
+                <p class="text-sm text-slate-400 text-sm">Вернем деньги или переделаем работу, если результат вас не устроит.</p>
             </div>
         </div>
     </section>
@@ -342,7 +343,7 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
     <!-- Stack Slider: Витрина мастеров -->
     <section class="py-16 px-6 max-w-7xl mx-auto overflow-hidden">
         <div class="text-center mb-16 reveal">
-            <h2 class="text-4xl md:text-6xl font-bold mb-4 text-white">Наши <span class="gradient-flow">эксперты</span></h2>
+            <h2 class="text-4xl md:text-6xl font-bold mb-4 text-white">Наши <span class="text-blue-500">эксперты</span></h2>
             <p class="text-slate-400 max-w-xl mx-auto text-sm">Познакомьтесь с теми, кто создает чистоту в вашем доме.</p>
         </div>
         
@@ -370,7 +371,7 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
                 <div id="calc-progress" class="h-full bg-blue-500 transition-all duration-500" style="width: 33%"></div>
             </div>
             
-            <div class="mb-8">
+            <div class="mb-8 text-left">
                 <h2 class="text-3xl font-bold mb-2 gradient-flow uppercase tracking-tighter">Калькулятор чистоты</h2>
                 <p class="text-slate-400 text-sm">Рассчитайте примерную стоимость за 30 секунд</p>
             </div>
@@ -380,44 +381,34 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
                 <h3 class="text-xl font-semibold mb-6 text-white text-center md:text-left">Что будем чистить?</h3>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div class="calc-option glass-card p-6 rounded-2xl text-center group" onclick="setOption('object', 'sofa', 1500)">
-                        <div class="flex justify-center mb-4">
-                            <svg class="w-10 h-10 text-blue-400 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 13h20M2 13v6a2 2 0 002 2h16a2 2 0 002-2v-6M2 13l2-4h16l2 4M5 9V7a2 2 0 012-2h10a2 2 0 012 2v2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </div>
-                        <div class="text-xs font-bold uppercase tracking-widest">Диван</div>
+                        <div class="flex justify-center mb-4"><svg class="w-10 h-10 text-blue-400 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 13h20M2 13v6a2 2 0 002 2h16a2 2 0 002-2v-6M2 13l2-4h16l2 4M5 9V7a2 2 0 012-2h10a2 2 0 012 2v2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="text-xs font-bold uppercase tracking-widest text-white">Диван</div>
                     </div>
                     <div class="calc-option glass-card p-6 rounded-2xl text-center group" onclick="setOption('object', 'armchair', 800)">
-                        <div class="flex justify-center mb-4">
-                            <svg class="w-10 h-10 text-blue-400 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 10v6M17 10v6M4 21h16M4 11a2 2 0 012-2h12a2 2 0 012 2v4H4v-4zM8 7V5a2 2 0 012-2h4a2 2 0 012 2v2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </div>
-                        <div class="text-xs font-bold uppercase tracking-widest">Кресло</div>
+                        <div class="flex justify-center mb-4"><svg class="w-10 h-10 text-blue-400 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 10v6M17 10v6M4 21h16M4 11a2 2 0 012-2h12a2 2 0 012 2v4H4v-4zM8 7V5a2 2 0 012-2h4a2 2 0 012 2v2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="text-xs font-bold uppercase tracking-widest text-white">Кресло</div>
                     </div>
                     <div class="calc-option glass-card p-6 rounded-2xl text-center group" onclick="setOption('object', 'mattress', 1200)">
-                        <div class="flex justify-center mb-4">
-                            <svg class="w-10 h-10 text-blue-400 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 12l2-4h14l2 4M3 12v6a2 2 0 002 2h14a2 2 0 002-2v-6M6 7a1 1 0 100-2 1 1 0 000 2zM18 7a1 1 0 100-2 1 1 0 000 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </div>
-                        <div class="text-xs font-bold uppercase tracking-widest">Матрас</div>
+                        <div class="flex justify-center mb-4"><svg class="w-10 h-10 text-blue-400 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 12l2-4h14l2 4M3 12v6a2 2 0 002 2h14a2 2 0 002-2v-6M6 7a1 1 0 100-2 1 1 0 000 2zM18 7a1 1 0 100-2 1 1 0 000 2z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="text-xs font-bold uppercase tracking-widest text-white">Матрас</div>
                     </div>
                     <div class="calc-option glass-card p-6 rounded-2xl text-center group" onclick="setOption('object', 'chair', 300)">
-                        <div class="flex justify-center mb-4">
-                            <svg class="w-10 h-10 text-blue-400 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 21v-8M17 21v-8M7 13h10v-3a2 2 0 00-2-2H9a2 2 0 00-2 2v3zM10 8V5a2 2 0 012-2h0a2 2 0 012 2v3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </div>
-                        <div class="text-xs font-bold uppercase tracking-widest">Стул</div>
+                        <div class="flex justify-center mb-4"><svg class="w-10 h-10 text-blue-400 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 21v-8M17 21v-8M7 13h10v-3a2 2 0 00-2-2H9a2 2 0 00-2 2v3zM10 8V5a2 2 0 012-2h0a2 2 0 012 2v3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <div class="text-xs font-bold uppercase tracking-widest text-white">Стул</div>
                     </div>
                 </div>
             </div>
 
             <!-- Step 2: Size -->
             <div id="step-2" class="step-content">
-                <h3 class="text-xl font-semibold mb-6 text-white">Укажите размер / количество</h3>
-                <div id="size-options" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <!-- Dynamic content injected by JS -->
-                </div>
+                <h3 class="text-xl font-semibold mb-6 text-white text-center md:text-left">Укажите размер / количество</h3>
+                <div id="size-options" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
                 <button onclick="prevStep()" class="mt-8 text-slate-500 hover:text-white transition text-sm underline underline-offset-4">Вернуться назад</button>
             </div>
 
             <!-- Step 3: Stains -->
             <div id="step-3" class="step-content">
-                <h3 class="text-xl font-semibold mb-6 text-white">Степень загрязнения</h3>
+                <h3 class="text-xl font-semibold mb-6 text-white text-center md:text-left">Степень загрязнения</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div class="calc-option glass-card p-6 rounded-2xl text-left border-blue-500/20" onclick="setOption('stain', 'light', 1)">
                         <div class="font-extrabold text-slate-200 mb-1 tracking-wider uppercase">Легкая</div>
@@ -441,8 +432,8 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
                 <div class="text-6xl md:text-8xl font-black gradient-flow mb-6"><span id="final-price">0</span> ₽</div>
                 <p class="text-slate-400 mb-8 max-w-md mx-auto text-sm leading-relaxed">Цена является предварительной. Для фиксации стоимости отправьте результаты расчета в WhatsApp.</p>
                 <div class="flex flex-col items-center gap-4">
-                    <a href="#" id="calc-whatsapp" class="js-whatsapp-btn pulse-btn bg-blue-600 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:scale-105 transition-transform w-full md:w-auto">
-                        Зафиксировать цену в WhatsApp
+                    <a href="#" id="calc-whatsapp" class="js-whatsapp-btn pulse-btn bg-blue-600 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:scale-105 transition-transform w-full md:w-auto uppercase tracking-tighter">
+                        Зафиксировать в WhatsApp
                     </a>
                     <button onclick="resetCalc()" class="text-slate-500 hover:text-white transition text-xs uppercase tracking-widest font-bold">Рассчитать заново</button>
                 </div>
@@ -456,64 +447,45 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-white">
             <div class="reveal group ba-container relative rounded-[2rem] overflow-hidden aspect-square md:aspect-video glass-card border-none">
-                <div class="absolute inset-0 bg-center bg-cover flex items-end p-8" style="background-color: #1e293b;">
-                   <div class="bg-black/40 backdrop-blur-md px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-white/10">До чистки</div>
-                </div>
-                <div class="ba-after absolute inset-0 bg-center bg-cover flex items-end justify-end p-8" style="background-color: #334155;">
-                    <div class="bg-blue-600 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">После</div>
-                </div>
-                <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity">
-                    <div class="text-white/20 text-sm font-medium border border-white/10 px-6 py-2 rounded-full backdrop-blur-sm italic">Наведите, чтобы сравнить</div>
-                </div>
+                <div class="absolute inset-0 bg-center bg-cover flex items-end p-8" style="background-color: #1e293b;"><div class="bg-black/40 backdrop-blur-md px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-white/10">До чистки</div></div>
+                <div class="ba-after absolute inset-0 bg-center bg-cover flex items-end justify-end p-8" style="background-color: #334155;"><div class="bg-blue-600 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">После</div></div>
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity"><div class="text-white/20 text-sm font-medium border border-white/10 px-6 py-2 rounded-full backdrop-blur-sm italic">Наведите для сравнения</div></div>
             </div>
             <div class="reveal group ba-container relative rounded-[2rem] overflow-hidden aspect-square md:aspect-video glass-card border-none" style="transition-delay: 0.2s;">
-                <div class="absolute inset-0 bg-center bg-cover flex items-end p-8" style="background-color: #0f172a;">
-                    <div class="bg-black/40 backdrop-blur-md px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-white/10">Сложное пятно</div>
-                </div>
-                <div class="ba-after absolute inset-0 bg-center bg-cover flex items-end justify-end p-8" style="background-color: #1e1b4b;">
-                    <div class="bg-blue-600 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Удалено</div>
-                </div>
+                <div class="absolute inset-0 bg-center bg-cover flex items-end p-8" style="background-color: #0f172a;"><div class="bg-black/40 backdrop-blur-md px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-white/10">Сложное пятно</div></div>
+                <div class="ba-after absolute inset-0 bg-center bg-cover flex items-end justify-end p-8" style="background-color: #1e1b4b;"><div class="bg-blue-600 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Удалено</div></div>
             </div>
         </div>
     </section>
 
     <!-- Reviews Section -->
     <section class="py-16 px-6 max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
-            <h2 class="text-4xl md:text-6xl font-bold reveal text-white">Слова доверия</h2>
-            <div class="reveal text-slate-400 max-w-xs text-right hidden md:block text-sm">Реальные отзывы наших клиентов.</div>
+        <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-10 gap-6 text-center md:text-left">
+            <h2 class="text-4xl md:text-6xl font-bold reveal text-white">Слова <span class="gradient-flow">доверия</span></h2>
+            <div class="reveal text-slate-400 max-w-xs md:text-right hidden md:block text-sm">Реальные отзывы наших клиентов.</div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
             <div class="glass-card p-8 rounded-3xl reveal">
                 <div class="flex gap-1 mb-6 text-blue-400 font-bold text-xs uppercase tracking-widest">Отзыв на Авито</div>
                 <p class="text-white italic mb-8 text-sm">«Диван был в пятнах от кофе и вина, думали уже перетягивать. Мастер приехал вовремя, за 2 часа все стало как новое.»</p>
-                <div class="flex items-center gap-4 text-sm">
-                    <div class="w-10 h-10 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center font-bold text-blue-400">ЕК</div>
-                    <div><div class="font-bold">Елена Ковалева</div><div class="text-slate-500">Москва</div></div>
-                </div>
+                <div class="flex items-center gap-4 text-sm"><div class="w-10 h-10 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center font-bold text-blue-400">ЕК</div><div><div class="font-bold text-white">Елена Ковалева</div><div class="text-slate-500">Москва</div></div></div>
             </div>
             <div class="glass-card p-8 rounded-3xl reveal" style="transition-delay: 0.1s;">
                 <div class="flex gap-1 mb-6 text-blue-400 font-bold text-xs uppercase tracking-widest">Отзыв на Авито</div>
                 <p class="text-white italic mb-8 text-sm">«Очень профессиональный подход. Оборудование мощное, высасывает грязь до основания. Рекомендую.»</p>
-                <div class="flex items-center gap-4 text-sm">
-                    <div class="w-10 h-10 rounded-full bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center font-bold text-cyan-400">АМ</div>
-                    <div><div class="font-bold">Александр М.</div><div class="text-slate-500">Люберцы</div></div>
-                </div>
+                <div class="flex items-center gap-4 text-sm"><div class="w-10 h-10 rounded-full bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center font-bold text-cyan-400">АМ</div><div><div class="font-bold text-white">Александр М.</div><div class="text-slate-500">Люберцы</div></div></div>
             </div>
             <div class="glass-card p-8 rounded-3xl reveal" style="transition-delay: 0.2s;">
                 <div class="flex gap-1 mb-6 text-blue-400 font-bold text-xs uppercase tracking-widest">Отзыв на Авито</div>
                 <p class="text-white italic mb-8 text-sm">«У нас двое детей и собака, вопрос безопасности стоял на первом месте. После чистки никаких аллергий.»</p>
-                <div class="flex items-center gap-4 text-sm">
-                    <div class="w-10 h-10 rounded-full bg-slate-500/20 border border-slate-500/30 flex items-center justify-center font-bold text-slate-400">МА</div>
-                    <div><div class="font-bold">Марина А.</div><div class="text-slate-500">Москва</div></div>
-                </div>
+                <div class="flex items-center gap-4 text-sm"><div class="w-10 h-10 rounded-full bg-slate-500/20 border border-slate-500/30 flex items-center justify-center font-bold text-slate-400">МА</div><div><div class="font-bold text-white">Марина А.</div><div class="text-slate-500">Москва</div></div></div>
             </div>
         </div>
 
         <div class="mt-12 text-center reveal">
             <a href="https://www.avito.ru" target="_blank" class="inline-flex items-center gap-3 glass-card px-8 py-4 rounded-2xl font-semibold hover:border-blue-500 transition-all group">
-                <span class="gradient-flow">Смотреть еще 1210 отзывов на Авито</span>
+                <span class="gradient-flow">Смотреть еще 1210 отзывы на Авито</span>
                 <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
             </a>
         </div>
@@ -521,36 +493,24 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
 
     <!-- Process Section -->
     <section id="process" class="py-16 px-6 max-w-5xl mx-auto">
-        <h2 class="text-4xl md:text-6xl font-bold mb-16 text-center reveal"><span class="gradient-flow">Протокол чистоты</span></h2>
+        <h2 class="text-4xl md:text-6xl font-bold mb-16 text-center reveal"><span class="gradient-flow text-center">Протокол чистоты</span></h2>
         <div class="space-y-12 relative text-white">
             <div class="hidden md:block absolute left-[15px] top-0 bottom-0 w-[1px] bg-white/10"></div>
-            <div class="flex flex-col md:flex-row gap-10 reveal">
+            <div class="flex flex-col md:flex-row gap-10 reveal text-left">
                 <div class="relative z-10 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold ring-8 ring-slate-950">01</div>
-                <div class="flex-1">
-                    <h4 class="text-2xl font-bold mb-2 text-blue-400 uppercase tracking-tighter">Этап // 001 — Диагностика</h4>
-                    <p class="text-slate-400 text-sm">Определение типа ткани и подбор состава.</p>
-                </div>
+                <div class="flex-1"><h4 class="text-2xl font-bold mb-2 text-blue-400 uppercase tracking-tighter">Этап // 001 — Диагностика</h4><p class="text-slate-400 text-sm">Определение типа ткани и подбор состава.</p></div>
             </div>
-            <div class="flex flex-col md:flex-row gap-10 reveal">
+            <div class="flex flex-col md:flex-row gap-10 reveal text-left">
                 <div class="relative z-10 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold ring-8 ring-slate-950">02</div>
-                <div class="flex-1">
-                    <h4 class="text-2xl font-bold mb-2 text-blue-400 uppercase tracking-tighter">Этап // 002 — Био-чистка</h4>
-                    <p class="text-slate-400 text-sm">Глубокая чистка биоразлагаемыми средствами.</p>
-                </div>
+                <div class="flex-1"><h4 class="text-2xl font-bold mb-2 text-blue-400 uppercase tracking-tighter">Этап // 002 — Био-чистка</h4><p class="text-slate-400 text-sm">Глубокая чистка биоразлагаемыми средствами.</p></div>
             </div>
-            <div class="flex flex-col md:flex-row gap-10 reveal">
+            <div class="flex flex-col md:flex-row gap-10 reveal text-left">
                 <div class="relative z-10 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold ring-8 ring-slate-950">03</div>
-                <div class="flex-1">
-                    <h4 class="text-2xl font-bold mb-2 text-blue-400 uppercase tracking-tighter">Этап // 003 — Защита</h4>
-                    <p class="text-slate-400 text-sm">Сохранение структуры ворса по ГОСТ р51105-97.</p>
-                </div>
+                <div class="flex-1"><h4 class="text-2xl font-bold mb-2 text-blue-400 uppercase tracking-tighter">Этап // 003 — Защита</h4><p class="text-slate-400 text-sm">Сохранение структуры ворса по ГОСТ р51105-97.</p></div>
             </div>
-            <div class="flex flex-col md:flex-row gap-10 reveal">
+            <div class="flex flex-col md:flex-row gap-10 reveal text-left">
                 <div class="relative z-10 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold ring-8 ring-slate-950">04</div>
-                <div class="flex-1">
-                    <h4 class="text-2xl font-bold mb-2 text-blue-400 uppercase tracking-tighter">Этап // 004 — Документация</h4>
-                    <p class="text-slate-400 text-sm">Выдача электронной квитанции и чека.</p>
-                </div>
+                <div class="flex-1"><h4 class="text-2xl font-bold mb-2 text-blue-400 uppercase tracking-tighter">Этап // 004 — Документация</h4><p class="text-slate-400 text-sm">Выдача электронной квитанции и чека.</p></div>
             </div>
         </div>
     </section>
@@ -558,28 +518,10 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
     <!-- FAQ Section -->
     <section id="faq" class="py-16 px-6 max-w-3xl mx-auto text-white">
         <h2 class="text-4xl font-bold mb-10 text-center reveal">Вопросы и доверие</h2>
-        <div class="space-y-4">
-            <details class="glass-card rounded-2xl p-6 reveal cursor-pointer group">
-                <summary class="flex justify-between items-center font-bold list-none">
-                    <span>Это безопасно для детей и животных?</span>
-                    <span class="group-open:rotate-180 transition-transform">↓</span>
-                </summary>
-                <p class="pt-4 text-slate-400 text-sm">Да, мы используем только сертифицированную эко-химию.</p>
-            </details>
-            <details class="glass-card rounded-2xl p-6 reveal cursor-pointer group">
-                <summary class="flex justify-between items-center font-bold list-none">
-                    <span>Цена может измениться в процессе?</span>
-                    <span class="group-open:rotate-180 transition-transform">↓</span>
-                </summary>
-                <p class="pt-4 text-slate-400 text-sm">Нет, цена фиксируется до выезда мастера.</p>
-            </details>
-            <details class="glass-card rounded-2xl p-6 reveal cursor-pointer group">
-                <summary class="flex justify-between items-center font-bold list-none">
-                    <span>Сколько времени сохнет мебель?</span>
-                    <span class="group-open:rotate-180 transition-transform">↓</span>
-                </summary>
-                <p class="pt-4 text-slate-400 text-sm">В среднем от 8 до 12 часов в зависимости от материала и влажности в помещении.</p>
-            </details>
+        <div class="space-y-4 text-left">
+            <details class="glass-card rounded-2xl p-6 reveal cursor-pointer group"><summary class="flex justify-between items-center font-bold list-none"><span>Это безопасно для детей и животных?</span><span class="group-open:rotate-180 transition-transform">↓</span></summary><p class="pt-4 text-slate-400 text-sm">Да, мы используем только сертифицированную эко-химию.</p></details>
+            <details class="glass-card rounded-2xl p-6 reveal cursor-pointer group"><summary class="flex justify-between items-center font-bold list-none"><span>Цена может измениться в процессе?</span><span class="group-open:rotate-180 transition-transform">↓</span></summary><p class="pt-4 text-slate-400 text-sm">Нет, цена фиксируется до выезда мастера.</p></details>
+            <details class="glass-card rounded-2xl p-6 reveal cursor-pointer group"><summary class="flex justify-between items-center font-bold list-none"><span>Сколько времени сохнет мебель?</span><span class="group-open:rotate-180 transition-transform">↓</span></summary><p class="pt-4 text-slate-400 text-sm">В среднем от 8 до 12 часов.</p></details>
         </div>
     </section>
 
@@ -587,51 +529,37 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
             <div>
                 <h3 class="text-3xl font-bold mb-6 gradient-flow uppercase tracking-tighter">Готовы обновить диван?</h3>
-                <p class="text-slate-400 mb-8">Пишите нам в WhatsApp — рассчитаем стоимость за 2 минуты.</p>
-                <a href="https://wa.me/79000000000" class="js-whatsapp-btn inline-block bg-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-blue-500 transition text-white uppercase">Связаться с нами</a>
+                <p class="text-slate-400 mb-8 text-sm">Пишите нам в WhatsApp — рассчитаем стоимость за 2 минуты.</p>
+                <a href="https://wa.me/79000000000" class="js-whatsapp-btn inline-block bg-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-blue-500 transition text-white uppercase text-sm tracking-widest">Связаться с нами</a>
             </div>
             <div class="text-slate-400 text-sm space-y-4">
-                <div><strong class="text-white block mb-1 text-sm uppercase">Адрес офиса:</strong>Москва, ул. Татьяны Макаровой, 10</div>
-                <div><strong class="text-white block mb-1 text-sm uppercase">Режим работы:</strong>Ежедневно с 09:00 до 19:00</div>
-                <div><strong class="text-white block mb-1 text-sm uppercase">Оплата:</strong>Наличные, карта, СБП</div>
+                <div><strong class="text-white block mb-1 uppercase text-xs tracking-widest">Адрес офиса:</strong>Москва, ул. Татьяны Макаровой, 10</div>
+                <div><strong class="text-white block mb-1 uppercase text-xs tracking-widest">Режим работы:</strong>Ежедневно с 09:00 до 19:00</div>
+                <div><strong class="text-white block mb-1 uppercase text-xs tracking-widest">Оплата:</strong>Наличные, карта, СБП</div>
             </div>
         </div>
         <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-600 uppercase tracking-widest">
             <div>© 2024 Moscow Cleaning Pro.</div>
             <div class="text-right flex flex-col md:flex-row gap-2 md:gap-6 items-center">
-                <button onclick="document.getElementById('privacy-modal').classList.add('active')" class="hover:text-white transition decoration-dotted underline underline-offset-4">Политика конфиденциальности</button>
-                <div class="flex flex-col md:flex-row gap-2 md:gap-6 opacity-60">
-                    <span>ИП Иванов И.И.</span>
-                    <span>ИНН: 770000000000</span>
-                    <span>ОГРНИП: 315000000000000</span>
-                </div>
+                <button onclick="document.getElementById('privacy-modal').classList.add('active')" class="hover:text-white transition underline underline-offset-4">Политика конфиденциальности</button>
+                <div class="flex gap-4 opacity-60"><span>ИНН: 770000000000</span><span>ОГРНИП: 315000000000</span></div>
             </div>
         </div>
     </footer>
 
     <!-- Privacy Modal -->
     <div id="privacy-modal" class="fixed inset-0 items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto hidden">
-        <div class="glass-card max-w-3xl w-full p-8 rounded-3xl relative my-auto">
+        <div class="glass-card max-w-3xl w-full p-8 rounded-3xl relative my-auto text-left">
             <button onclick="document.getElementById('privacy-modal').classList.remove('active'); document.getElementById('privacy-modal').classList.add('hidden')" class="absolute top-6 right-6 text-slate-400 hover:text-white text-2xl">&times;</button>
-            <div class="prose prose-invert max-h-[70vh] overflow-y-auto pr-4 custom-scrollbar text-left">
+            <div class="prose prose-invert max-h-[70vh] overflow-y-auto pr-4 custom-scrollbar">
                 <h2 class="text-2xl font-bold mb-6 gradient-flow uppercase tracking-tighter">Политика конфиденциальности</h2>
-                <div class="space-y-4 text-slate-300 text-sm leading-relaxed">
-                    <p>Настоящая политика конфиденциальности определяет порядок обработки и защиты персональной информации о физических лицах (далее — Пользователь), которая может быть получена сайтом Moscow Cleaning Pro.</p>
-                    <h3 class="text-white font-semibold uppercase text-xs tracking-widest">1. Общие положения</h3>
-                    <p>Целью настоящей политики является обеспечение надлежащей защиты информации о Пользователях, в том числе их персональных данных.</p>
-                    <h3 class="text-white font-semibold uppercase text-xs tracking-widest">2. Сбор персональных данных</h3>
-                    <p>Сайт собирает персональные данные, такие как имя и номер телефона, исключительно в целях обратной связи.</p>
-                    <h3 class="text-white font-semibold uppercase text-xs tracking-widest">3. Цели обработки информации</h3>
-                    <p>Данные используются для связи с Пользователем по вопросам оказания услуг химчистки.</p>
-                    <h3 class="text-white font-semibold uppercase text-xs tracking-widest">4. Защита информации</h3>
-                    <p>Мы принимаем все необходимые меры для защиты данных от неправомерного доступа.</p>
-                </div>
+                <div class="space-y-4 text-slate-300 text-sm"><p>Настоящая политика конфиденциальности определяет порядок обработки и защиты персональной информации о физических лицах.</p></div>
             </div>
         </div>
     </div>
 
     <script>
-        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const observerOptions = { threshold: 0.1 };
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, observerOptions);
@@ -641,19 +569,8 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
             const scrolled = window.pageYOffset;
             const p1 = document.getElementById('parallax1');
             const p2 = document.getElementById('parallax2');
-            const p3 = document.getElementById('parallax3');
             if(p1) p1.style.transform = `translateX(${scrolled * 0.1}px) translateY(${scrolled * 0.05}px)`;
             if(p2) p2.style.transform = `translateX(-${scrolled * 0.15}px) translateY(${scrolled * 0.02}px)`;
-            if(p3) p3.style.transform = `translateX(${scrolled * 0.08}px) rotate(${scrolled * 0.01}deg)`;
-        });
-
-        document.querySelectorAll('details').forEach((el) => {
-            el.addEventListener('toggle', (e) => {
-                if (el.open) {
-                    const content = el.querySelector('p');
-                    content.animate([{ opacity: 0, transform: 'translateY(-10px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 400, easing: 'ease-out' });
-                }
-            });
         });
 
         // Calculator Logic
@@ -666,19 +583,9 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
         };
 
         function setOption(type, value, multiplier) {
-            if (type === 'object') {
-                calcData.object = value;
-                calcData.basePrice = multiplier;
-                renderSizes(value);
-                nextStep();
-            } else if (type === 'size') {
-                calcData.size = multiplier;
-                nextStep();
-            } else if (type === 'stain') {
-                calcData.stain = multiplier;
-                calculateFinal();
-                nextStep();
-            }
+            if (type === 'object') { calcData.object = value; calcData.basePrice = multiplier; renderSizes(value); nextStep(); }
+            else if (type === 'size') { calcData.size = multiplier; nextStep(); }
+            else if (type === 'stain') { calcData.stain = multiplier; calculateFinal(); nextStep(); }
         }
 
         function renderSizes(objType) {
@@ -686,7 +593,7 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
             container.innerHTML = '';
             sizes[objType].forEach(s => {
                 const div = document.createElement('div');
-                div.className = 'calc-option glass-card p-6 rounded-2xl text-center font-bold text-xs uppercase tracking-widest hover:border-blue-500';
+                div.className = 'calc-option glass-card p-6 rounded-2xl text-center font-bold text-xs uppercase tracking-widest hover:border-blue-500 text-white';
                 div.innerText = s.l;
                 div.onclick = () => setOption('size', s.l, s.p);
                 container.appendChild(div);
@@ -721,15 +628,7 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
             document.getElementById('calc-progress').style.width = '25%';
         }
 
-        document.querySelectorAll('.js-whatsapp-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                if (typeof ym === 'function' && typeof METRIKA_ID !== 'undefined') {
-                    ym(METRIKA_ID, 'reachGoal', 'WHATSAPP_CLICK');
-                }
-            });
-        });
-
-        // Stack Slider Logic
+        // Stack Slider Logic Оптимизация
         let currentIdx = 0;
         const mastersData = [
             { name: "Артем К.", role: "Эксперт по текстилю", exp: "8 лет" },
@@ -751,7 +650,7 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
             container.innerHTML = '';
             mastersData.forEach((m, i) => {
                 const card = document.createElement('div');
-                card.className = 'master-card glass-card p-6';
+                card.className = 'master-card p-6';
                 card.innerHTML = `
                     <div class="w-full h-2/3 bg-slate-800/50 rounded-[2rem] mb-6 overflow-hidden border border-white/5 relative">
                         <div class="absolute inset-0 flex items-center justify-center text-slate-600 uppercase tracking-widest text-[10px] font-black opacity-30">Portrait Mode</div>
@@ -761,8 +660,7 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
                         <p class="text-blue-400 text-xs font-bold uppercase tracking-widest mb-2">Стаж ${m.exp}</p>
                         <div class="w-8 h-0.5 bg-blue-600 mx-auto mb-3 opacity-50"></div>
                         <p class="text-slate-500 text-[10px] uppercase font-bold tracking-widest">${m.role}</p>
-                    </div>
-                `;
+                    </div>`;
                 container.appendChild(card);
             });
             updateStackStyles();
@@ -776,46 +674,39 @@ content="Вернем чистоту и уют за 120 минут. 12 проф�
                     card.style.transform = `translate3d(0, 0, 0) scale(1) rotateY(0deg)`;
                     card.style.zIndex = 40;
                     card.style.opacity = 1;
-                    card.style.filter = 'blur(0)';
+                    card.style.visibility = 'visible';
                     card.style.pointerEvents = 'auto';
                 } else if (diff === 1) {
                     card.style.transform = `translate3d(30px, 20px, -100px) scale(0.9) rotateY(-5deg)`;
                     card.style.zIndex = 30;
                     card.style.opacity = 0.7;
-                    card.style.filter = 'blur(1px)';
+                    card.style.visibility = 'visible';
                     card.style.pointerEvents = 'none';
                 } else if (diff === 2) {
                     card.style.transform = `translate3d(60px, 40px, -200px) scale(0.8) rotateY(-10deg)`;
                     card.style.zIndex = 20;
                     card.style.opacity = 0.4;
-                    card.style.filter = 'blur(2px)';
+                    card.style.visibility = 'visible';
                     card.style.pointerEvents = 'none';
                 } else if (diff === 3) {
                     card.style.transform = `translate3d(90px, 60px, -300px) scale(0.7) rotateY(-15deg)`;
                     card.style.zIndex = 10;
                     card.style.opacity = 0.15;
-                    card.style.filter = 'blur(3px)';
+                    card.style.visibility = 'visible';
                     card.style.pointerEvents = 'none';
                 } else {
                     card.style.transform = `translate3d(120px, 80px, -400px) scale(0.6)`;
                     card.style.zIndex = 0;
                     card.style.opacity = 0;
-                    card.style.filter = 'blur(10px)';
+                    card.style.visibility = 'hidden';
                     card.style.pointerEvents = 'none';
                 }
             });
         }
 
-        window.rotateStack = function(dir) {
-            currentIdx = (currentIdx + dir + mastersData.length) % mastersData.length;
-            updateStackStyles();
-        };
-
-        window.onload = function() {
-            initStack();
-        };
-
-        window.onclick = function(e) {
+        window.rotateStack = function(dir) { currentIdx = (currentIdx + dir + mastersData.length) % mastersData.length; updateStackStyles(); };
+        window.onload = () => { initStack(); };
+        window.onclick = (e) => {
             const modal = document.getElementById('privacy-modal');
             if (e.target == modal) { modal.classList.remove('active'); modal.classList.add('hidden'); }
         }
